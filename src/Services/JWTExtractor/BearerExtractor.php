@@ -11,7 +11,7 @@ class BearerExtractor implements JWTExtractorInterface
 
     public function supports(Request $request): bool
     {
-        return $request->headers->has('Authorization');
+        return $request->headers->has('Authorization') && preg_match('/^Bearer /i', $request->headers->get('Authorization'));
     }
 
     /**
